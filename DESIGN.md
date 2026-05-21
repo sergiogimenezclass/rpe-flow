@@ -1,6 +1,6 @@
 ---
-name: RPE Flow
-colors:
+nombre: RPE Flow
+colores:
   surface: '#f9f9ff'
   surface-dim: '#cfdaf2'
   surface-bright: '#f9f9ff'
@@ -48,7 +48,7 @@ colors:
   background: '#f9f9ff'
   on-background: '#111c2d'
   surface-variant: '#d8e3fb'
-typography:
+tipografía:
   display-lg:
     fontFamily: Plus Jakarta Sans
     fontSize: 48px
@@ -92,14 +92,14 @@ typography:
     fontSize: 28px
     fontWeight: '600'
     lineHeight: 36px
-rounded:
+redondeado:
   sm: 0.25rem
   DEFAULT: 0.5rem
   md: 0.75rem
   lg: 1rem
   xl: 1.5rem
   full: 9999px
-spacing:
+espaciado:
   container-max-width: 1120px
   gutter: 24px
   margin-x: 32px
@@ -109,61 +109,61 @@ spacing:
   section-padding: 64px
 ---
 
-## Brand & Style
-The design system is engineered for high-performance coaching, prioritizing clarity, focus, and a sense of professional "flow." It targets elite athletic coaches who require data-rich environments that don't feel overwhelming. 
+## Marca y Estilo
+El sistema de diseño está pensado para el alto rendimiento deportivo, priorizando la claridad, el enfoque y una sensación de "flujo" (flow) profesional. Está dirigido a entrenadores de élite que requieren entornos ricos en datos que no resulten abrumadores.
 
-The aesthetic is a fusion of **Apple-inspired minimalism** and **Notion-inspired utility**. It utilizes a "warm-minimalist" approach, avoiding the sterile coldness of typical enterprise software in favor of an inviting, spacious environment that encourages daily usage. The interface should feel like a premium physical notebook—organized, high-quality, and intentional.
+La estética es una fusión del **minimalismo inspirado en Apple** y la **utilidad inspirada en Notion**. Utiliza un enfoque de "minimalismo cálido", evitando la frialdad estéril del software empresarial típico en favor de un entorno acogedor y espacioso que fomente el uso diario. La interfaz debe sentirse como un cuaderno físico de alta gama: organizada, de gran calidad e intencionada.
 
-## Colors
-The palette is anchored by a **warm white background** to reduce eye strain during long coaching sessions. The primary color is a **Premium Soft Orange**, chosen for its visibility and energy without being aggressive or oversaturated. 
+## Colores
+La paleta se ancla en un **fondo blanco cálido** para reducir la fatiga visual durante las largas sesiones de entrenamiento. El color principal es un **Naranja Suave Premium**, elegido por su visibilidad y energía sin ser agresivo ni estar sobresaturado.
 
-Surface colors use a very light gray to create subtle distinction between the background and nested content. Semantic colors (Green, Yellow, Red) are desaturated to "soft" variants to ensure that high-fatigue alerts grab attention through hue rather than jarring intensity.
+Los colores de superficie utilizan un gris muy claro para crear una distinción sutil entre el fondo y el contenido anidado. Los colores semánticos (Verde, Amarillo, Rojo) se han suavizado para asegurar que las alertas de alta fatiga capten la atención a través del tono en lugar de una intensidad discordante.
 
-## Typography
-This design system utilizes **Plus Jakarta Sans** across all levels to achieve a modern, approachable, yet geometric look. The typography relies on generous line heights and subtle negative letter-spacing on larger headings to mimic high-end editorial layouts.
+## Tipografía
+Este sistema de diseño utiliza **Plus Jakarta Sans** en todos los niveles para lograr un aspecto moderno, accesible y geométrico. La tipografía se basa en interlineados generosos y un ajuste sutil del espacio entre letras en los encabezados más grandes para imitar los diseños editoriales de alta gama.
 
-Hierarchy is established through weight rather than just size. Headlines should feel grounded and sturdy, while body text remains light and breathable. For data-heavy coaching tables, use the `label-md` or `label-sm` tiers to maintain legibility at smaller scales.
+La jerarquía se establece a través del peso más que por el tamaño. Los titulares deben sentirse sólidos y firmes, mientras que el texto del cuerpo permanece ligero y fluido. Para las tablas de entrenamiento con muchos datos, se utilizan los niveles `label-md` o `label-sm` para mantener la legibilidad en escalas más pequeñas.
 
-## Layout & Spacing
-The layout follows a **Fixed Grid** philosophy, centered in the viewport to maintain focus and prevent "eye-travel" fatigue. 
+## Diseño y Espaciado
+El diseño sigue una filosofía de **Cuadrícula Fija**, centrada en la pantalla para mantener el enfoque y prevenir la fatiga ocular.
 
-- **Navigation:** A single top-horizontal bar handles all top-level routing. No sidebars are used to maximize horizontal space for training data.
-- **Grid:** A 12-column layout within a 1120px container. 
-- **Rhythm:** An 8px linear scale drives all padding and margins. Use `stack-lg` (32px) for separating major card groups and `section-padding` (64px) for vertical whitespace between disparate content blocks.
-- **Mobile:** On small screens, the container transitions to a fluid 1-column layout with 16px horizontal margins.
+- **Navegación:** Una única barra superior horizontal gestiona todo el enrutamiento de nivel superior. No se utilizan barras laterales para maximizar el espacio horizontal para los datos de entrenamiento.
+- **Cuadrícula:** Un diseño de 12 columnas dentro de un contenedor de 1120px.
+- **Ritmo:** Una escala lineal de 8px rige todos los rellenos (padding) y márgenes. Se usa `stack-lg` (32px) para separar grupos de tarjetas principales y `section-padding` (64px) para el espacio vertical entre bloques de contenido distintos.
+- **Móvil:** En pantallas pequeñas, el contenedor pasa a un diseño fluido de 1 columna con márgenes horizontales de 16px.
 
-## Elevation & Depth
-Depth is conveyed through **Tonal Layers** and **Ambient Shadows**. This design system avoids harsh borders.
+## Elevación y Profundidad
+La profundidad se transmite a través de **Capas Tonales** y **Sombras Ambientales**. Este sistema de diseño evita los bordes bruscos.
 
-1.  **Level 0 (Background):** The warm white base (#FAFAFA).
-2.  **Level 1 (Surfaces):** Very light gray (#F3F4F6) used for inset areas or secondary grouping.
-3.  **Level 2 (Cards):** Pure white (#FFFFFF) containers. These represent the primary interactive modules.
-4.  **Shadows:** Use a single, highly diffused shadow for Level 2 elements: `0 4px 20px -2px rgba(0, 0, 0, 0.05)`. The goal is for the shadow to feel like a soft glow rather than a hard drop, giving the UI a "lifted" feel from the page.
+1.  **Nivel 0 (Fondo):** La base blanca cálida (#FAFAFA).
+2.  **Nivel 1 (Superficies):** Gris muy claro (#F3F4F6) utilizado para áreas insertadas o agrupaciones secundarias.
+3.  **Nivel 2 (Tarjetas):** Contenedores de color blanco puro (#FFFFFF). Representan los módulos interactivos principales.
+4.  **Sombras:** Se utiliza una única sombra muy difusa para los elementos de Nivel 2: `0 4px 20px -2px rgba(0, 0, 0, 0.05)`. El objetivo es que la sombra se sienta como un resplandor suave en lugar de una sombra dura, dando a la interfaz una sensación de estar "elevada" sobre la página.
 
-## Shapes
-The shape language is defined by **Large Rounded Corners**, echoing the aesthetic of high-end consumer hardware.
+## Formas
+El lenguaje de las formas se define por **Grandes Esquinas Redondeadas**, haciendo eco de la estética del hardware de consumo de alta gama.
 
-- **Base Radius (rounded):** 0.5rem (8px) for buttons, inputs, and small widgets.
-- **Large Radius (rounded-lg):** 1rem (16px) for standard cards and containers.
-- **Extra Large Radius (rounded-xl):** 1.5rem (24px) for primary feature hero blocks or main dashboard modules.
-- **Avatars:** Strictly circular (50% radius) to contrast against the softened rectangular grid of the rest of the UI.
+- **Radio Base (rounded):** 0.5rem (8px) para botones, campos de entrada y widgets pequeños.
+- **Radio Grande (rounded-lg):** 1rem (16px) para tarjetas y contenedores estándar.
+- **Radio Extra Grande (rounded-xl):** 1.5rem (24px) para bloques hero de funciones principales o módulos principales del panel.
+- **Avatares:** Estrictamente circulares (radio del 50%) para contrastar con la cuadrícula rectangular suavizada del resto de la interfaz.
 
-## Components
+## Componentes
 
-### Buttons
-Buttons are clean and flat. The **Primary Button** uses the Soft Orange background with white text. The **Secondary Button** uses a light gray background with the primary color as text. Both use a medium weight font and 0.5rem corner radius.
+### Botones
+Los botones son limpios y planos. El **Botón Primario** utiliza el fondo Naranja Suave con texto blanco. El **Botón Secundario** utiliza un fondo gris claro con el color principal como texto. Ambos utilizan una fuente de peso medio y un radio de esquina de 0.5rem.
 
-### Cards
-Cards are the primary container for coaching data. They must have a pure white background, 1rem corner radius, and the standard ambient shadow. Content within cards should have at least 24px of internal padding to maintain the Notion-inspired spaciousness.
+### Tarjetas
+Las tarjetas son el contenedor principal para los datos de entrenamiento. Deben tener un fondo blanco puro, un radio de esquina de 1rem y la sombra ambiental estándar. El contenido dentro de las tarjetas debe tener al menos 24px de relleno interno para mantener la amplitud inspirada en Notion.
 
-### Input Fields
-Inputs use the `surface_hex` (#F3F4F6) as a background with no border in their default state. On focus, they transition to a white background with a 1px soft orange border.
+### Campos de Entrada
+Los campos utilizan el color de superficie (#F3F4F6) como fondo sin borde en su estado predeterminado. Al enfocarse, pasan a un fondo blanco con un borde naranja suave de 1px.
 
 ### Avatars
-Athlete avatars are always circular. Use high-resolution, "real-world" athlete imagery to maintain the professional, human-centric focus of the coaching app.
+Los avatares de los atletas son siempre circulares. Se deben utilizar imágenes de atletas de alta resolución y "reales" para mantener el enfoque profesional y humano de la aplicación.
 
-### RPE Indicators (Chips)
-Use small, rounded chips for RPE (Rate of Perceived Exertion) values. The chip background should use the semantic fatigue colors (Green/Yellow/Red) with high-contrast dark text.
+### Indicadores RPE (Chips)
+Se utilizan pequeños "chips" redondeados para los valores de RPE (Escala de Esfuerzo Percibido). El fondo del chip debe utilizar los colores semánticos de fatiga (Verde/Amarillo/Rojo) con texto oscuro de alto contraste.
 
-### Top Navigation
-A slim, 64px tall bar at the top. Use a backdrop-blur (glassmorphism) effect if the navigation is sticky, allowing the warm background to bleed through slightly.
+### Navegación Superior
+Una barra delgada de 64px de altura en la parte superior. Se utiliza un efecto de desenfoque de fondo (backdrop-blur/glassmorphism) si la navegación es fija, permitiendo que el fondo cálido se filtre ligeramente.

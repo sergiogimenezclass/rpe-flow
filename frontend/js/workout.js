@@ -10,10 +10,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Cargar atletas en el select
     try {
         const athletes = await apiFetch('/athletes');
+        const urlParams = new URLSearchParams(window.location.search);
+        const preselectedId = urlParams.get('athlete_id');
+
         athletes.forEach(athlete => {
             const option = document.createElement('option');
             option.value = athlete.id;
             option.textContent = athlete.name;
+            if (preselectedId && athlete.id == preselectedId) {
+                option.selected = true;
+            }
             athleteSelect.appendChild(option);
         });
     } catch (error) {

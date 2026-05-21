@@ -163,7 +163,7 @@
 <span class="text-secondary font-label-md text-label-md">Atletas activos</span>
 <span class="material-symbols-outlined text-primary" data-icon="group">group</span>
 </div>
-<p class="font-display-lg text-headline-lg text-on-surface">24</p>
+<p class="font-display-lg text-headline-lg text-on-surface" id="total-athletes">0</p>
 <div class="flex items-center gap-1 mt-1 text-green-600">
 <span class="material-symbols-outlined text-sm" data-icon="trending_up">trending_up</span>
 <span class="font-label-sm text-label-sm">+2 este mes</span>
@@ -175,7 +175,7 @@
 <span class="text-secondary font-label-md text-label-md">Fatiga alta</span>
 <span class="material-symbols-outlined text-error" data-icon="warning">warning</span>
 </div>
-<p class="font-display-lg text-headline-lg text-on-surface">3</p>
+<p class="font-display-lg text-headline-lg text-on-surface" id="high-fatigue">0</p>
 <div class="flex items-center gap-1 mt-1 text-error">
 <span class="material-symbols-outlined text-sm" data-icon="priority_high">priority_high</span>
 <span class="font-label-sm text-label-sm">Requiere atención</span>
@@ -187,7 +187,7 @@
 <span class="text-secondary font-label-md text-label-md">Sesiones</span>
 <span class="material-symbols-outlined text-primary" data-icon="event_note">event_note</span>
 </div>
-<p class="font-display-lg text-headline-lg text-on-surface">142</p>
+<p class="font-display-lg text-headline-lg text-on-surface" id="total-sessions">0</p>
 <div class="flex items-center gap-1 mt-1 text-secondary">
 <span class="material-symbols-outlined text-sm" data-icon="calendar_today">calendar_today</span>
 <span class="font-label-sm text-label-sm">Últimos 7 días</span>
@@ -199,7 +199,7 @@
 <span class="text-secondary font-label-md text-label-md">Promedio RPE</span>
 <span class="material-symbols-outlined text-primary" data-icon="equalizer">equalizer</span>
 </div>
-<p class="font-display-lg text-headline-lg text-on-surface">6.8</p>
+<p class="font-display-lg text-headline-lg text-on-surface" id="avg-rpe">0</p>
 <div class="flex items-center gap-1 mt-1 text-secondary">
 <span class="font-label-sm text-label-sm">Nivel de esfuerzo estable</span>
 </div>
@@ -250,48 +250,8 @@
 <!-- Recent Alerts -->
 <section class="bg-surface-container-lowest p-stack-lg rounded-xl shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)] border border-surface-container">
 <h2 class="font-headline-md text-headline-md text-on-surface mb-6">Alertas de Fatiga</h2>
-<div class="space-y-4">
-<!-- Alert 1 -->
-<div class="flex items-center gap-4 p-3 rounded-lg hover:bg-surface-container-low transition-all cursor-pointer group">
-<div class="w-12 h-12 rounded-full overflow-hidden border-2 border-error">
-<img alt="Athlete" class="w-full h-full object-cover" data-alt="A focused female athlete in her late 20s during a high-intensity functional training session. She is wearing professional athletic gear, sweating slightly, with a determined expression. The background is a clean, minimalist high-performance gym with natural light. The overall mood is serious, professional, and captures the high-effort aesthetic of the RPE Flow platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCj9EpbYQUi86SJaDdaheAkaaCqL36cF8UPpCS5aMYAJWhZsaGaJ_uKqKPcBVLfES4XoPNWfgf2FbqsiXiKYcgxgEc9Bj2ZyD3eDmgjy_3sYXLZ_ww_ezP5_Wyv9JEzzrzgXf2dGqdh7H3gn37H5seQweuFYhLTEMkq-xraC_8TTM5AknEguzcsN8-E-BFMaNma44kBSS_62GUzfeD1ovITJqqlrvYuyJMJ7vCw58vbrRJfsRXe-j9PboHHNyla9HjoCmrsjiAhRo8"/>
-</div>
-<div class="flex-1">
-<div class="flex justify-between items-start">
-<h3 class="font-label-md text-label-md font-bold text-on-surface">Marcos Paz</h3>
-<span class="bg-error text-white text-[10px] px-2 py-0.5 rounded-full font-bold">RPE 9</span>
-</div>
-<p class="text-xs text-secondary">Carga aguda +25% vs crónica</p>
-</div>
-<span class="material-symbols-outlined text-secondary opacity-0 group-hover:opacity-100 transition-opacity" data-icon="chevron_right">chevron_right</span>
-</div>
-<!-- Alert 2 -->
-<div class="flex items-center gap-4 p-3 rounded-lg hover:bg-surface-container-low transition-all cursor-pointer group">
-<div class="w-12 h-12 rounded-full overflow-hidden border-2 border-primary-container">
-<img alt="Athlete" class="w-full h-full object-cover" data-alt="A male sprinter at the starting blocks on a premium outdoor track. The lighting is golden hour, creating a warm, high-contrast visual. He is wearing high-end performance apparel. The scene conveys intense preparation and elite athletic focus, matching the warm-minimalist professional aesthetic of the coaching app." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgGJotq4di0AJT9sROne52yHl6dIkCjvOYpcneNprgyE-FVl0OCtViMjLmSoWGnx-NLZsgvFNo1pjAGFEAj4ADIsJuNWnIHpOjt1vm3HyUC39Fiuygq9_-Wyrr6MB7uLINMdUiEkElG89D6tznU2YSYpZvH6lHkhWMsfT67PW_G4qL0RpIPM0uDo41vhcysta8lad0NWGIS4j2caiL5pgqnkiwZNN3trfm7FsaJjJxvxQfmT6Q__QFrz9PfBoBEzxnqdHqCpD1R4c"/>
-</div>
-<div class="flex-1">
-<div class="flex justify-between items-start">
-<h3 class="font-label-md text-label-md font-bold text-on-surface">Sofía Gallo</h3>
-<span class="bg-primary-container text-on-primary-container text-[10px] px-2 py-0.5 rounded-full font-bold">RPE 7</span>
-</div>
-<p class="text-xs text-secondary">Tendencia ascendente (3 días)</p>
-</div>
-<span class="material-symbols-outlined text-secondary opacity-0 group-hover:opacity-100 transition-opacity" data-icon="chevron_right">chevron_right</span>
-</div>
-<!-- Alert 3 -->
-<div class="flex items-center gap-4 p-3 rounded-lg hover:bg-surface-container-low transition-all cursor-pointer group">
-<div class="w-12 h-12 rounded-full overflow-hidden border-2 border-error">
-<img alt="Athlete" class="w-full h-full object-cover" data-alt="A professional cyclist in the middle of a high-speed training ride on a scenic coastal road. The shot is dynamic, with soft morning light illuminating the high-end cycling equipment and the athlete's concentration. The color palette is natural, featuring soft blues and earth tones, keeping with the professional and inviting UI style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvhu6YGILVeAScLMVO6q2zv_1SdVvhVYafOCFrI8F22ZeaF_4G_YKQBwyb_zXlAB-nnC_OffvndwlI3UP0OBgBAFKHbIzynhu1BiBzXE81jLBS1-Ty9Y2dCbIds4ZzgSCr5RhSZ5UlkXA5DAwR5VvOcT0kkM18SVX8kGpL2uFCIYmKANMatMAUpL5ai3szzFt-OJiaRpyqF6z5Sr5b-DqZ8nliUYE_8oKRwlknCyv8CRB4VSN-tYb2pQqNie5qEnhaHJaaeUeIeRE"/>
-</div>
-<div class="flex-1">
-<div class="flex justify-between items-start">
-<h3 class="font-label-md text-label-md font-bold text-on-surface">Lucas Ruiz</h3>
-<span class="bg-error text-white text-[10px] px-2 py-0.5 rounded-full font-bold">RPE 10</span>
-</div>
-<p class="text-xs text-secondary">Sobreentrenamiento detectado</p>
-</div>
-<span class="material-symbols-outlined text-secondary opacity-0 group-hover:opacity-100 transition-opacity" data-icon="chevron_right">chevron_right</span>
+<div class="space-y-4" id="alerts-container">
+<!-- Alerts will be injected here -->
 </div>
 <button class="w-full mt-4 py-3 border border-outline-variant/30 rounded-lg text-primary font-label-md text-label-md hover:bg-surface-container-low transition-all">Ver todas las alertas</button>
 </div>
@@ -321,14 +281,10 @@
 <button class="md:hidden fixed bottom-20 right-6 w-14 h-14 bg-primary text-white rounded-full shadow-lg flex items-center justify-center active:scale-95 transition-transform z-40">
 <span class="material-symbols-outlined" data-icon="add" style="font-variation-settings: 'FILL' 1;">add</span>
 </button>
+<!-- Scripts -->
+<script src="js/api.js"></script>
+<script src="js/dashboard.js"></script>
 <script>
-        // Simple Micro-interaction: Active state visual feedback for metric cards
-        document.querySelectorAll('.bg-surface-container-lowest').forEach(card => {
-            card.addEventListener('mousedown', () => card.style.transform = 'scale(0.98)');
-            card.addEventListener('mouseup', () => card.style.transform = 'scale(1.02)');
-            card.addEventListener('mouseleave', () => card.style.transform = 'scale(1)');
-        });
-
         // Initialize Material Symbols Weight
         document.querySelectorAll('.material-symbols-outlined').forEach(icon => {
             if (icon.getAttribute('data-weight') === 'fill') {

@@ -33,46 +33,58 @@ Este documento detalla las historias de usuario para el flujo básico de planifi
 ---
 
 ### 📋 Épica 2: Planificación (Entrenador)
-#### **HU-2.1: Carga de Plan de Entrenamiento**
+#### **HU-2.1: Carga y Modificación de Plan Semanal**
 * **Como** Entrenador,
-* **Quiero** programar planes de entrenamiento compuestos por distintos ejercicios para mis atletas,
-* **Para** estructurar las rutinas de fuerza que deben realizar.
+* **Quiero** programar y modificar planes de entrenamiento semanales con una cantidad variable de días y ejercicios para mis atletas,
+* **Para** adaptar las rutinas de fuerza semana a semana.
 * **Criterios de Aceptación:**
-  - El entrenador cuenta con un botón "Programar Sesión" en la vista de detalle de cada atleta.
-  - Al presionarlo, se despliega un formulario que permite definir:
-    - **Fecha** del entrenamiento.
-    - **Frecuencia** semanal (ej. 3 veces por semana).
-    - **Ejercicios** (se pueden añadir dinámicamente múltiples filas de ejercicios).
-    - Para cada ejercicio se especifica: **Peso planeado (kg)**, **Repeticiones planeadas** y **RPE objetivo**.
-  - Al guardar, el plan se registra en estado "pendiente" para el atleta seleccionado.
+  - El entrenador cuenta con una opción de "Programar Semana" en el perfil de cada atleta.
+  - Al crear el plan, se define:
+    - **Semana de Planificación** (semana calendario seleccionada).
+    - **Cantidad de días de entrenamiento** para esa semana (ej. 3 días, configurable dinámicamente).
+    - **Días de la semana sugeridos** (ej: Lunes, Miércoles, Viernes) o enumeración simple (Día 1, Día 2, Día 3).
+  - Por cada día de entrenamiento de la semana, se pueden añadir múltiples ejercicios, definiendo para cada serie: **Peso planeado (kg)**, **Repeticiones planeadas** y **RPE objetivo**.
+  - **Edición a Futuro**: El entrenador puede ingresar a un plan semanal ya creado y modificar la cantidad de días, cambiar ejercicios u objetivos siempre y cuando el atleta no haya completado esa sesión de entrenamiento.
+  - Al guardar, las sesiones pendientes se publican en el calendario del atleta para esa semana.
   - **Requisitos de UI/UX:**
     - **Legibilidad de Inputs**: Los campos de entrada de datos (especialmente de números como peso y repeticiones) deben tener un tamaño de fuente legible (mínimo 14px) y anchos adaptados para evitar que los números queden cortados o resulten muy pequeños en pantallas de cualquier tamaño.
     - **Feedback Integrado (No Alerts)**: La confirmación de plan guardado exitosamente o la indicación de errores en el formulario debe realizarse a través de notificaciones en pantalla integradas al diseño (banners, toasts o mensajes inline), prohibiéndose el uso de diálogos emergentes nativos del navegador (`alert()`).
 
+
 ---
 
 ### 🏋️‍♂️ Épica 3: Ejecución y Registro (Atleta)
-#### **HU-3.1: Visualización de Rutinas Pendientes**
+#### **HU-3.1: Calendario de Rutinas y Frecuencia**
 * **Como** Atleta,
-* **Quiero** ver una lista de las rutinas de entrenamiento pendientes que mi entrenador me programó,
-* **Para** saber qué debo entrenar hoy.
+* **Quiero** contar con un calendario interactivo que refleje la frecuencia y los días planificados de mi rutina,
+* **Para** seleccionar cualquier fecha y ver la rutina asignada de ese día.
 * **Criterios de Aceptación:**
-  - Al ingresar a `athlete-dashboard.html`, se listan todos los planes que están en estado "pendiente".
-  - Cada tarjeta de plan muestra la fecha, la frecuencia y los ejercicios asignados.
+  - En `athlete-dashboard.html`, se renderiza una sección de **Calendario de Entrenamientos** interactivo.
+  - La frecuencia de entrenamiento definida por el entrenador (ej. 3 veces por semana) destaca visualmente los días planificados o programados en el calendario.
+  - Al hacer clic en un día que contiene un plan "pendiente", se abre el formulario de registro correspondiente.
+  - Permite la navegación del calendario para consultar rutinas pasadas y futuras.
 
-#### **HU-3.2: Registro de Resultados Reales y RPE**
+#### **HU-3.2: Registro Detallado por Serie (Set/Repeticiones)**
 * **Como** Atleta,
-* **Quiero** registrar el peso real, repeticiones reales y RPE percibido en cada ejercicio del plan,
-* **Para** completar mi entrenamiento y enviar los datos a mi entrenador.
+* **Quiero** registrar el peso y RPE para cada serie de forma individual,
+* **Para** documentar de manera precisa la variación de esfuerzo en cada serie de mi ejercicio.
 * **Criterios de Aceptación:**
-  - Al seleccionar un plan pendiente, se abre el formulario de registro con los ejercicios planificados.
-  - Los campos de peso y repeticiones vienen pre-completados con los valores planificados por el entrenador, pero son editables.
-  - El atleta ingresa de manera obligatoria el **RPE real** percibido (valor de 1 a 10) usando un control deslizante o selector.
-  - Al guardar la rutina, el plan pasa a estado "completado".
-  - Se calculan automáticamente las alertas de fatiga (Verde, Amarillo, Rojo) y las sugerencias de carga para la próxima sesión basados en el RPE real.
+  - El formulario de registro despliega **una fila de inputs por cada serie** planificada para el ejercicio.
+  - Los campos de peso y repeticiones vienen pre-completados con los valores planificados para esa serie, pero se pueden modificar si el atleta no logró la meta.
+  - Cada serie cuenta con su propio control deslizante/slider de RPE real.
+  - Al guardar, el plan pasa a "completado" y registra las métricas detalladas por serie.
   - **Requisitos de UI/UX:**
     - **Control Deslizante Inteligente**: El control deslizante para el RPE debe tener un tamaño cómodo y fácil de manipular en móviles. Debe actualizar en tiempo real un indicador de texto grande con el valor seleccionado.
     - **Notificación Integrada (No Alerts)**: Al enviar la rutina completada con éxito, la confirmación debe ser visual e integrada al diseño de la página de forma fluida (sin alerts nativos), indicando al atleta que sus datos fueron transmitidos con éxito al entrenador.
+
+#### **HU-3.3: Video Demostrativo del Ejercicio**
+* **Como** Atleta,
+* **Quiero** poder reproducir un video demostrativo de la técnica del ejercicio asignado,
+* **Para** asegurar la correcta ejecución del movimiento.
+* **Criterios de Aceptación:**
+  - Junto a cada ejercicio en la vista de rutina y en el formulario de carga, se muestra un acceso rápido (icono de video/play).
+  - Al presionarlo, se reproduce de manera integrada (ej. en un modal modal o popup) un video demostrativo del ejercicio.
+  - Los enlaces de videos demostrativos vienen pre-configurados para los ejercicios preestablecidos en el sistema.
 
 ---
 

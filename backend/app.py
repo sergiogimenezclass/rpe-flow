@@ -24,6 +24,13 @@ def get_db_connection():
     conn.row_factory = sqlite3.Row
     return conn
 
+@app.route('/')
+def home():
+    return jsonify({
+        'status': 'success',
+        'message': 'RPE Flow API is running. Access the frontend app at http://localhost:8000'
+    })
+
 @app.route('/api/login', methods=['POST'])
 def login():
     data = request.json

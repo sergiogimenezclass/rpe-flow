@@ -80,9 +80,38 @@ document.addEventListener('DOMContentLoaded', async () => {
                 }, 3000);
             }
         } catch (error) {
-            alert('Error al guardar: ' + error.message);
+            showToast('Error al guardar: ' + error.message, true);
             submitBtn.disabled = false;
             submitBtn.innerHTML = originalBtnContent;
         }
     });
+
+    // Toast feedback function
+    function showToast(message, isError = false) {
+        const toast = document.getElementById('toast');
+        const icon = document.getElementById('toast-icon');
+        const msg = document.getElementById('toast-msg');
+        
+        if (!toast || !icon || !msg) return;
+        
+        msg.textContent = message;
+        if (isError) {
+            toast.classList.replace('bg-emerald-600', 'bg-red-600');
+            icon.textContent = 'error';
+        } else {
+            toast.classList.replace('bg-red-600', 'bg-emerald-600');
+            icon.textContent = 'check_circle';
+        }
+        toast.classList.remove('hidden');
+        setTimeout(() => {
+            toast.classList.remove('translate-x-full');
+        }, 50);
+        
+        setTimeout(() => {
+            toast.classList.add('translate-x-full');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 300);
+        }, 3000);
+    }
 });

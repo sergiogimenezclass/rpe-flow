@@ -46,10 +46,39 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
             } catch (error) {
-                alert('Error: ' + error.message);
+                showToast('Error: ' + error.message, true);
                 btn.disabled = false;
                 btn.innerHTML = originalContent;
             }
         });
+    }
+
+    // Toast feedback function
+    function showToast(message, isError = false) {
+        const toast = document.getElementById('toast');
+        const icon = document.getElementById('toast-icon');
+        const msg = document.getElementById('toast-msg');
+        
+        if (!toast || !icon || !msg) return;
+        
+        msg.textContent = message;
+        if (isError) {
+            toast.classList.replace('bg-emerald-600', 'bg-red-600');
+            icon.textContent = 'error';
+        } else {
+            toast.classList.replace('bg-red-600', 'bg-emerald-600');
+            icon.textContent = 'check_circle';
+        }
+        toast.classList.remove('hidden');
+        setTimeout(() => {
+            toast.classList.remove('translate-x-full');
+        }, 50);
+        
+        setTimeout(() => {
+            toast.classList.add('translate-x-full');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 300);
+        }, 3000);
     }
 });

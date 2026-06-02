@@ -296,13 +296,13 @@ document.addEventListener('DOMContentLoaded', async () => {
                     row.innerHTML = `
                         <div class="col-span-2 text-xs font-bold text-secondary">Serie ${s}</div>
                         <div class="col-span-3">
-                            <input type="number" class="w-full bg-white border-none rounded-lg h-9 text-xs px-2 input-weight font-semibold text-on-surface" placeholder="Peso (kg)" value="${setObj.planned_weight}" required />
+                            <input type="number" class="w-full bg-white border-none rounded-lg h-10 text-sm px-3 input-weight font-semibold text-on-surface" placeholder="Peso (kg)" value="${setObj.planned_weight}" required />
                         </div>
                         <div class="col-span-3">
-                            <input type="number" class="w-full bg-white border-none rounded-lg h-9 text-xs px-2 input-reps text-on-surface" placeholder="Reps" value="${setObj.planned_reps}" required />
+                            <input type="number" class="w-full bg-white border-none rounded-lg h-10 text-sm px-3 input-reps text-on-surface" placeholder="Reps" value="${setObj.planned_reps}" required />
                         </div>
                         <div class="col-span-4">
-                            <input type="number" class="w-full bg-white border-none rounded-lg h-9 text-xs px-2 input-rpe text-on-surface" placeholder="RPE" step="0.5" value="${setObj.planned_rpe}" required />
+                            <input type="number" class="w-full bg-white border-none rounded-lg h-10 text-sm px-3 input-rpe text-on-surface" placeholder="RPE" step="0.5" value="${setObj.planned_rpe}" required />
                         </div>
                     `;
                     setsContainer.appendChild(row);
@@ -328,13 +328,13 @@ document.addEventListener('DOMContentLoaded', async () => {
             row.innerHTML = `
                 <div class="col-span-2 text-xs font-bold text-secondary">Serie ${s}</div>
                 <div class="col-span-3">
-                    <input type="number" class="w-full bg-white border-none rounded-lg h-9 text-xs px-2 input-weight font-semibold text-on-surface" placeholder="Peso" value="${setObj.planned_weight}" required />
+                    <input type="number" class="w-full bg-white border-none rounded-lg h-10 text-sm px-3 input-weight font-semibold text-on-surface" placeholder="Peso" value="${setObj.planned_weight}" required />
                 </div>
                 <div class="col-span-3">
-                    <input type="number" class="w-full bg-white border-none rounded-lg h-9 text-xs px-2 input-reps text-on-surface" placeholder="Reps" value="${setObj.planned_reps}" required />
+                    <input type="number" class="w-full bg-white border-none rounded-lg h-10 text-sm px-3 input-reps text-on-surface" placeholder="Reps" value="${setObj.planned_reps}" required />
                 </div>
                 <div class="col-span-4">
-                    <input type="number" class="w-full bg-white border-none rounded-lg h-9 text-xs px-2 input-rpe text-on-surface" placeholder="RPE" step="0.5" value="${setObj.planned_rpe}" required />
+                    <input type="number" class="w-full bg-white border-none rounded-lg h-10 text-sm px-3 input-rpe text-on-surface" placeholder="RPE" step="0.5" value="${setObj.planned_rpe}" required />
                 </div>
             `;
             setsContainer.appendChild(row);

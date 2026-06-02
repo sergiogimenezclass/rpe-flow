@@ -45,6 +45,9 @@ Este documento detalla las historias de usuario para el flujo básico de planifi
     - **Ejercicios** (se pueden añadir dinámicamente múltiples filas de ejercicios).
     - Para cada ejercicio se especifica: **Peso planeado (kg)**, **Repeticiones planeadas** y **RPE objetivo**.
   - Al guardar, el plan se registra en estado "pendiente" para el atleta seleccionado.
+  - **Requisitos de UI/UX:**
+    - **Legibilidad de Inputs**: Los campos de entrada de datos (especialmente de números como peso y repeticiones) deben tener un tamaño de fuente legible (mínimo 14px) y anchos adaptados para evitar que los números queden cortados o resulten muy pequeños en pantallas de cualquier tamaño.
+    - **Feedback Integrado (No Alerts)**: La confirmación de plan guardado exitosamente o la indicación de errores en el formulario debe realizarse a través de notificaciones en pantalla integradas al diseño (banners, toasts o mensajes inline), prohibiéndose el uso de diálogos emergentes nativos del navegador (`alert()`).
 
 ---
 
@@ -67,6 +70,9 @@ Este documento detalla las historias de usuario para el flujo básico de planifi
   - El atleta ingresa de manera obligatoria el **RPE real** percibido (valor de 1 a 10) usando un control deslizante o selector.
   - Al guardar la rutina, el plan pasa a estado "completado".
   - Se calculan automáticamente las alertas de fatiga (Verde, Amarillo, Rojo) y las sugerencias de carga para la próxima sesión basados en el RPE real.
+  - **Requisitos de UI/UX:**
+    - **Control Deslizante Inteligente**: El control deslizante para el RPE debe tener un tamaño cómodo y fácil de manipular en móviles. Debe actualizar en tiempo real un indicador de texto grande con el valor seleccionado.
+    - **Notificación Integrada (No Alerts)**: Al enviar la rutina completada con éxito, la confirmación debe ser visual e integrada al diseño de la página de forma fluida (sin alerts nativos), indicando al atleta que sus datos fueron transmitidos con éxito al entrenador.
 
 ---
 

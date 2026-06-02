@@ -167,18 +167,18 @@
 <div class="absolute bottom-2 right-2 w-8 h-8 bg-green-500 border-4 border-white rounded-full"></div>
 </div>
 <div class="flex-1 text-center md:text-left">
-<h1 class="font-headline-lg text-headline-lg text-on-surface mb-1">Marcos Rodríguez</h1>
-<p class="font-body-lg text-body-lg text-secondary mb-4">Meta: Maratón de Valencia (Sub 2h 45min)</p>
+<h1 id="athlete-name" class="font-headline-lg text-headline-lg text-on-surface mb-1">Cargando...</h1>
+<p id="athlete-objective" class="font-body-lg text-body-lg text-secondary mb-4">Meta: -</p>
 <div class="flex flex-wrap justify-center md:justify-start gap-stack-sm">
-<span class="px-4 py-1.5 bg-surface-container rounded-full text-primary font-label-md text-label-md">Fase: Competitiva</span>
-<span class="px-4 py-1.5 bg-secondary-container rounded-full text-on-secondary-container font-label-md text-label-md">Vo2 Max: 64</span>
+<span class="px-4 py-1.5 bg-surface-container rounded-full text-primary font-label-md text-label-md">Fase: Demo</span>
+<span class="px-4 py-1.5 bg-secondary-container rounded-full text-on-secondary-container font-label-md text-label-md">Activo</span>
 </div>
 </div>
 <div class="flex gap-stack-sm">
 <button class="bg-surface-container-low text-primary px-6 py-2.5 rounded-lg font-label-md text-label-md active:scale-95 transition-transform hover:bg-surface-container-high">
                     Editar Perfil
                 </button>
-<button class="bg-primary text-white px-6 py-2.5 rounded-lg font-label-md text-label-md active:scale-95 transition-transform card-shadow">
+<button id="program-session-btn" class="bg-primary text-white px-6 py-2.5 rounded-lg font-label-md text-label-md active:scale-95 transition-transform card-shadow">
                     Programar Sesión
                 </button>
 </div>
@@ -287,70 +287,8 @@
 <h2 class="font-headline-md text-headline-md text-on-surface">Historial de Sesiones</h2>
 <button class="text-primary font-label-md text-label-md hover:underline">Ver todo</button>
 </div>
-<div class="space-y-stack-md">
-<!-- Training Session Row 1 -->
-<div class="bg-white rounded-xl p-6 card-shadow flex flex-col md:flex-row items-center gap-6 group hover:translate-x-1 transition-transform cursor-pointer">
-<div class="w-14 h-14 bg-surface-container rounded-full flex items-center justify-center text-primary shrink-0">
-<span class="material-symbols-outlined text-3xl">directions_run</span>
-</div>
-<div class="flex-1 text-center md:text-left">
-<h4 class="font-headline-md text-headline-md text-on-surface mb-1">Intervalos Umbral</h4>
-<p class="font-body-md text-body-md text-secondary">Jueves, 12 de Octubre • 1h 15min</p>
-</div>
-<div class="flex gap-stack-lg items-center">
-<div class="text-center">
-<p class="font-label-sm text-label-sm text-secondary uppercase mb-1">Carga</p>
-<p class="font-headline-md text-headline-md">742</p>
-</div>
-<div class="text-center">
-<p class="font-label-sm text-label-sm text-secondary uppercase mb-1">RPE</p>
-<span class="px-3 py-1 bg-error-container text-on-error-container rounded-full font-label-md text-label-md">9.5</span>
-</div>
-<span class="material-symbols-outlined text-secondary group-hover:text-primary">chevron_right</span>
-</div>
-</div>
-<!-- Training Session Row 2 -->
-<div class="bg-white rounded-xl p-6 card-shadow flex flex-col md:flex-row items-center gap-6 group hover:translate-x-1 transition-transform cursor-pointer">
-<div class="w-14 h-14 bg-surface-container rounded-full flex items-center justify-center text-primary shrink-0">
-<span class="material-symbols-outlined text-3xl">fitness_center</span>
-</div>
-<div class="flex-1 text-center md:text-left">
-<h4 class="font-headline-md text-headline-md text-on-surface mb-1">Fuerza Específica</h4>
-<p class="font-body-md text-body-md text-secondary">Miércoles, 11 de Octubre • 45min</p>
-</div>
-<div class="flex gap-stack-lg items-center">
-<div class="text-center">
-<p class="font-label-sm text-label-sm text-secondary uppercase mb-1">Carga</p>
-<p class="font-headline-md text-headline-md">310</p>
-</div>
-<div class="text-center">
-<p class="font-label-sm text-label-sm text-secondary uppercase mb-1">RPE</p>
-<span class="px-3 py-1 bg-surface-container text-on-surface-variant rounded-full font-label-md text-label-md">6.0</span>
-</div>
-<span class="material-symbols-outlined text-secondary group-hover:text-primary">chevron_right</span>
-</div>
-</div>
-<!-- Training Session Row 3 -->
-<div class="bg-white rounded-xl p-6 card-shadow flex flex-col md:flex-row items-center gap-6 group hover:translate-x-1 transition-transform cursor-pointer">
-<div class="w-14 h-14 bg-surface-container rounded-full flex items-center justify-center text-primary shrink-0">
-<span class="material-symbols-outlined text-3xl">directions_run</span>
-</div>
-<div class="flex-1 text-center md:text-left">
-<h4 class="font-headline-md text-headline-md text-on-surface mb-1">Rodaje Regenerativo</h4>
-<p class="font-body-md text-body-md text-secondary">Lunes, 09 de Octubre • 50min</p>
-</div>
-<div class="flex gap-stack-lg items-center">
-<div class="text-center">
-<p class="font-label-sm text-label-sm text-secondary uppercase mb-1">Carga</p>
-<p class="font-headline-md text-headline-md">200</p>
-</div>
-<div class="text-center">
-<p class="font-label-sm text-label-sm text-secondary uppercase mb-1">RPE</p>
-<span class="px-3 py-1 bg-green-100 text-green-800 rounded-full font-label-md text-label-md">4.0</span>
-</div>
-<span class="material-symbols-outlined text-secondary group-hover:text-primary">chevron_right</span>
-</div>
-</div>
+<div class="space-y-stack-md" id="history-container">
+    <!-- Completed plans will be dynamically injected here -->
 </div>
 </section>
 </main>
@@ -373,18 +311,60 @@
 <span class="font-label-sm text-label-sm-mobile">Log</span>
 </a>
 </nav>
+<!-- Modal de Programar Sesión -->
+<div id="planModal" class="fixed inset-0 bg-black/50 hidden z-50 flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-surface-dim w-full max-w-lg rounded-xl shadow-lg p-6 space-y-6 max-h-[90vh] overflow-y-auto">
+        <div class="flex justify-between items-center border-b pb-3">
+            <h3 class="text-xl font-bold text-on-surface">Programar Nueva Sesión</h3>
+            <button id="closePlanModal" class="text-secondary hover:text-primary">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <form id="planForm" class="space-y-4">
+            <div class="grid grid-cols-2 gap-4">
+                <div class="space-y-1">
+                    <label class="text-sm font-medium text-secondary">Fecha</label>
+                    <input type="date" id="planDate" class="w-full bg-gray-50 border-none rounded-lg h-11 px-3" required />
+                </div>
+                <div class="space-y-1">
+                    <label class="text-sm font-medium text-secondary">Frecuencia</label>
+                    <input type="text" id="planFrequency" placeholder="Ej. 3 veces/semana" class="w-full bg-gray-50 border-none rounded-lg h-11 px-3" required />
+                </div>
+            </div>
+            
+            <div class="border-t pt-4">
+                <div class="flex justify-between items-center mb-2">
+                    <h4 class="font-bold text-on-surface">Ejercicios</h4>
+                    <button type="button" id="addExerciseBtn" class="text-primary font-bold flex items-center gap-1 text-sm hover:underline">
+                        <span class="material-symbols-outlined text-sm">add</span> Añadir
+                    </button>
+                </div>
+                <div id="exercisesContainer" class="space-y-4">
+                    <!-- Dynamic rows will be injected here -->
+                </div>
+            </div>
+
+            <button type="submit" class="w-full h-12 bg-primary hover:bg-surface-tint text-white font-bold rounded-lg transition-all active:scale-[0.98] shadow-md flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined">save</span> Guardar y Asignar Plan
+            </button>
+        </form>
+    </div>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/athlete.js"></script>
 <script>
-        // Micro-interactions and subtle effects
-        document.querySelectorAll('.card-shadow').forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                card.style.transform = 'translateY(-2px)';
-                card.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
-                card.style.boxShadow = '0 10px 25px -5px rgba(0, 0, 0, 0.08)';
-            });
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'translateY(0)';
-                card.style.boxShadow = '0 4px 20px -2px rgba(0, 0, 0, 0.05)';
-            });
+    // Micro-interactions and subtle effects
+    document.querySelectorAll('.card-shadow').forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.style.transform = 'translateY(-2px)';
+            card.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
+            card.style.boxShadow = '0 10px 25px -5px rgba(0, 0, 0, 0.08)';
         });
-    </script>
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'translateY(0)';
+            card.style.boxShadow = '0 4px 20px -2px rgba(0, 0, 0, 0.05)';
+        });
+    });
+</script>
 </body></html>

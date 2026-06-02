@@ -313,9 +313,9 @@
 </nav>
 <!-- Modal de Programar Sesión -->
 <div id="planModal" class="fixed inset-0 bg-black/50 hidden z-50 flex items-center justify-center p-4">
-    <div class="bg-white dark:bg-surface-dim w-full max-w-lg rounded-xl shadow-lg p-6 space-y-6 max-h-[90vh] overflow-y-auto">
+    <div class="bg-white dark:bg-surface-dim w-full max-w-2xl rounded-xl shadow-lg p-6 space-y-6 max-h-[90vh] overflow-y-auto">
         <div class="flex justify-between items-center border-b pb-3">
-            <h3 class="text-xl font-bold text-on-surface">Programar Nueva Sesión</h3>
+            <h3 class="text-xl font-bold text-on-surface">Programar Plan Semanal</h3>
             <button id="closePlanModal" class="text-secondary hover:text-primary">
                 <span class="material-symbols-outlined">close</span>
             </button>
@@ -323,32 +323,53 @@
         <form id="planForm" class="space-y-4">
             <div class="grid grid-cols-2 gap-4">
                 <div class="space-y-1">
-                    <label class="text-sm font-medium text-secondary">Fecha</label>
-                    <input type="date" id="planDate" class="w-full bg-gray-50 border-none rounded-lg h-11 px-3" required />
+                    <label class="text-sm font-medium text-secondary">Semana (Fecha del Lunes)</label>
+                    <input type="date" id="planWeekStart" class="w-full bg-gray-50 border-none rounded-lg h-11 px-3 text-sm" required />
                 </div>
                 <div class="space-y-1">
-                    <label class="text-sm font-medium text-secondary">Frecuencia</label>
-                    <input type="text" id="planFrequency" placeholder="Ej. 3 veces/semana" class="w-full bg-gray-50 border-none rounded-lg h-11 px-3" required />
+                    <label class="text-sm font-medium text-secondary">Frecuencia (Días)</label>
+                    <select id="planFreqDays" class="w-full bg-gray-50 border-none rounded-lg h-11 px-3 text-sm" required>
+                        <option value="1">1 día/semana</option>
+                        <option value="2">2 días/semana</option>
+                        <option value="3" selected>3 días/semana</option>
+                        <option value="4">4 días/semana</option>
+                        <option value="5">5 días/semana</option>
+                        <option value="6">6 días/semana</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Selector de Día Activo (Tabs) -->
+            <div class="border-t pt-4">
+                <label class="text-sm font-semibold text-on-surface block mb-2">Configurar Día:</label>
+                <div id="dayTabsContainer" class="flex gap-2 overflow-x-auto pb-2">
+                    <!-- Dynamic tabs will be injected here -->
                 </div>
             </div>
             
-            <div class="border-t pt-4">
+            <div class="border-t pt-4 space-y-4">
                 <div class="flex justify-between items-center mb-2">
-                    <h4 class="font-bold text-on-surface">Ejercicios</h4>
+                    <h4 class="font-bold text-on-surface text-base" id="currentDayHeader">Ejercicios - Día 1</h4>
                     <button type="button" id="addExerciseBtn" class="text-primary font-bold flex items-center gap-1 text-sm hover:underline">
-                        <span class="material-symbols-outlined text-sm">add</span> Añadir
+                        <span class="material-symbols-outlined text-sm">add</span> Añadir Ejercicio
                     </button>
                 </div>
-                <div id="exercisesContainer" class="space-y-4">
-                    <!-- Dynamic rows will be injected here -->
+                <div id="exercisesContainer" class="space-y-6">
+                    <!-- Dynamic exercises and their set rows will be injected here -->
                 </div>
             </div>
 
             <button type="submit" class="w-full h-12 bg-primary hover:bg-surface-tint text-white font-bold rounded-lg transition-all active:scale-[0.98] shadow-md flex items-center justify-center gap-2">
-                <span class="material-symbols-outlined">save</span> Guardar y Asignar Plan
+                <span class="material-symbols-outlined">save</span> Guardar Plan Semanal completo
             </button>
         </form>
     </div>
+</div>
+
+<!-- Toast Feedback UI -->
+<div id="toast" class="fixed top-4 right-4 z-[9999] transform translate-x-full transition-transform duration-300 bg-emerald-600 text-white font-bold py-3.5 px-6 rounded-xl shadow-lg flex items-center gap-3 hidden">
+    <span class="material-symbols-outlined" id="toast-icon">check_circle</span>
+    <span id="toast-msg">Operación exitosa</span>
 </div>
 
 <script src="js/api.js"></script>

@@ -62,6 +62,22 @@ document.addEventListener('DOMContentLoaded', async () => {
         }, 3000);
     }
 
+    function getMondayOfDate(d) {
+        const date = new Date(d);
+        const day = date.getDay();
+        const diff = date.getDate() - day + (day === 0 ? -6 : 1);
+        const mon = new Date(date.setDate(diff));
+        mon.setHours(0,0,0,0);
+        return mon;
+    }
+
+    function formatDateToYYYYMMDD(d) {
+        const yyyy = d.getFullYear();
+        const mm = String(d.getMonth() + 1).padStart(2, '0');
+        const dd = String(d.getDate()).padStart(2, '0');
+        return `${yyyy}-${mm}-${dd}`;
+    }
+
     // 2. Cargar detalles del atleta e historial
     async function loadAthleteData() {
         try {
@@ -352,7 +368,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (programBtn) {
         programBtn.addEventListener('click', async () => {
             currentDay = 1;
-            planWeekStart.value = new Date().toISOString().split('T')[0];
+            const monday = getMondayOfDate(new Date());
+            planWeekStart.value = formatDateToYYYYMMDD(monday);
             planFreqDays.value = '3';
             
             // Inicializar estado del plan vacío
@@ -384,6 +401,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (planWeekStart) {
         planWeekStart.addEventListener('change', async () => {
+            const parts = planWeekStart.value.split('-');
+            const selectedDate = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]));
+            const monday = getMondayOfDate(selectedDate);
+            planWeekStart.value = formatDateToYYYYMMDD(monday);
+            
             planData.week_start_date = planWeekStart.value;
             await fetchExistingPlan();
             renderDayTabs();

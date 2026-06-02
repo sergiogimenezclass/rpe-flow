@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import sqlite3
-from datetime import datetime
+from datetime import datetime, timedelta
 import os
 
 app = Flask(__name__)
@@ -23,6 +23,14 @@ def get_db_connection():
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
     return conn
+
+def get_monday_of_week(date_str):
+    try:
+        d = datetime.strptime(date_str, '%Y-%m-%d')
+        monday = d - timedelta(days=d.weekday())
+        return monday.strftime('%Y-%m-%d')
+    except Exception:
+        return date_str
 
 @app.route('/')
 def home():
@@ -94,7 +102,7 @@ def get_athletes():
 def save_plan():
     data = request.json
     athlete_id = data.get('athlete_id')
-    week_start_date = data.get('week_start_date')
+    week_start_date = get_monday_of_week(data.get('week_start_date'))
     frequency_days = data.get('frequency_days')
     sessions = data.get('sessions', [])
     
@@ -161,7 +169,7 @@ def save_plan():
 
 @app.route('/api/athletes/<int:athlete_id>/plans/week', methods=['GET'])
 def get_weekly_plan(athlete_id):
-    week_start_date = request.args.get('date')
+    week_start_date = get_monday_of_week(request.args.get('date'))
     if not week_start_date:
         return jsonify({'status': 'error', 'message': 'Se requiere la fecha de inicio de semana (date)'}), 400
         

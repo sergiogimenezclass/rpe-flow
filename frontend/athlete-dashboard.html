@@ -43,29 +43,40 @@
         </header>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            <!-- Pending Plans List (Left) -->
+            <!-- Weekly Calendar Panel (Left) -->
             <section class="lg:col-span-5 space-y-6">
                 <h3 class="text-lg font-bold text-on-surface flex items-center gap-2">
-                    <span class="material-symbols-outlined text-orange-600">event_note</span> Rutinas Pendientes
+                    <span class="material-symbols-outlined text-orange-600">calendar_month</span> Mi Calendario Semanal
                 </h3>
-                <div id="pending-plans-list" class="space-y-4">
-                    <!-- Pending plan cards will be injected here -->
+                <div class="bg-white border rounded-xl p-5 card-shadow space-y-4">
+                    <div class="flex justify-between items-center pb-2 border-b">
+                        <button type="button" id="prevWeekBtn" class="text-primary hover:underline flex items-center gap-0.5 text-xs font-bold">
+                            <span class="material-symbols-outlined text-sm">chevron_left</span> Anterior
+                        </button>
+                        <span id="currentWeekRange" class="font-bold text-on-surface text-xs">Semana del -</span>
+                        <button type="button" id="nextWeekBtn" class="text-primary hover:underline flex items-center gap-0.5 text-xs font-bold">
+                            Siguiente <span class="material-symbols-outlined text-sm">chevron_right</span>
+                        </button>
+                    </div>
+                    <div id="calendar-days-grid" class="divide-y">
+                        <!-- 7 days of the week will be dynamically loaded here -->
+                    </div>
                 </div>
             </section>
 
             <!-- Complete Workout Form Area (Right) -->
             <section class="lg:col-span-7 space-y-6">
                 <h3 class="text-lg font-bold text-on-surface flex items-center gap-2">
-                    <span class="material-symbols-outlined text-orange-600">play_circle</span> Registrar Rutina
+                    <span class="material-symbols-outlined text-orange-600">play_circle</span> Registrar Sesión
                 </h3>
                 
                 <div id="completion-form-card" class="bg-white border rounded-xl p-6 card-shadow hidden">
                     <form id="completePlanForm" class="space-y-6">
-                        <input type="hidden" id="completePlanId" />
+                        <input type="hidden" id="completeSessionId" />
                         <div class="border-b pb-3 flex justify-between items-center">
                             <div>
-                                <h4 class="font-bold text-on-surface text-lg">Sesión de Fuerza</h4>
-                                <p id="formPlanMeta" class="text-xs text-secondary mt-0.5">Fecha: - • Frecuencia: -</p>
+                                <h4 class="font-bold text-on-surface text-lg" id="formSessionTitle">Sesión de Fuerza</h4>
+                                <p id="formPlanMeta" class="text-xs text-secondary mt-0.5">Fecha: -</p>
                             </div>
                         </div>
                         
@@ -74,14 +85,14 @@
                         </div>
 
                         <button type="submit" class="w-full h-12 bg-orange-600 hover:bg-orange-700 text-white font-bold rounded-lg transition-all active:scale-[0.98] shadow-md flex items-center justify-center gap-2">
-                            <span class="material-symbols-outlined">save</span> Finalizar y Guardar Rutina
+                            <span class="material-symbols-outlined">save</span> Guardar Sesión Completada
                         </button>
                     </form>
                 </div>
 
                 <div id="no-plan-selected" class="bg-white border rounded-xl p-8 text-center text-secondary">
                     <span class="material-symbols-outlined text-5xl opacity-40 mb-2">touch_app</span>
-                    <p>Selecciona una rutina pendiente a la izquierda para comenzar a entrenar.</p>
+                    <p>Selecciona un día planificado en tu calendario para registrar tu entrenamiento.</p>
                 </div>
             </section>
         </div>
@@ -89,13 +100,31 @@
         <!-- History Section (Bottom) -->
         <section class="mt-12 space-y-6">
             <h3 class="text-lg font-bold text-on-surface flex items-center gap-2">
-                <span class="material-symbols-outlined text-orange-600">history</span> Historial de Rutinas Realizadas
+                <span class="material-symbols-outlined text-orange-600">history</span> Historial de Sesiones Completadas
             </h3>
             <div id="completed-plans-container" class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- Completed plan cards will be injected here -->
             </div>
         </section>
     </main>
+
+    <!-- Video Popup Modal -->
+    <div id="videoModal" class="fixed inset-0 bg-black/80 hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl overflow-hidden w-full max-w-2xl shadow-lg relative">
+            <button id="closeVideoModal" class="absolute top-2 right-2 text-white bg-black/60 rounded-full w-8 h-8 flex items-center justify-center hover:bg-black">
+                <span class="material-symbols-outlined text-sm">close</span>
+            </button>
+            <div class="aspect-video w-full">
+                <iframe id="videoIframe" class="w-full h-full" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Feedback UI -->
+    <div id="toast" class="fixed top-4 right-4 z-[9999] transform translate-x-full transition-transform duration-300 bg-emerald-600 text-white font-bold py-3.5 px-6 rounded-xl shadow-lg flex items-center gap-3 hidden">
+        <span class="material-symbols-outlined" id="toast-icon">check_circle</span>
+        <span id="toast-msg">Operación exitosa</span>
+    </div>
 
     <!-- Scripts -->
     <script src="js/api.js"></script>

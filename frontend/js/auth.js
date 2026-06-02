@@ -20,8 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
 
             try {
-                // En el MVP el email lo tomamos como username para simplificar según el plan
-                const username = email.split('@')[0]; 
+                const username = document.getElementById('email').value; 
                 
                 const response = await apiFetch('/login', {
                     method: 'POST',
@@ -29,13 +28,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 if (response.status === 'success') {
-                    localStorage.setItem('coach', JSON.stringify(response.user));
-                    btn.innerHTML = `<span class="material-symbols-outlined">check_circle</span> Éxito`;
-                    btn.classList.replace('bg-primary-container', 'bg-emerald-600');
-                    
-                    setTimeout(() => {
-                        window.location.href = 'dashboard.html';
-                    }, 800);
+                    localStorage.setItem('role', response.role);
+                    if (response.role === 'coach') {
+                        localStorage.setItem('coach', JSON.stringify(response.user));
+                        btn.innerHTML = `<span class="material-symbols-outlined">check_circle</span> Éxito`;
+                        btn.classList.replace('bg-primary-container', 'bg-emerald-600');
+                        setTimeout(() => {
+                            window.location.href = 'dashboard.html';
+                        }, 800);
+                    } else if (response.role === 'athlete') {
+                        localStorage.setItem('athlete', JSON.stringify(response.user));
+                        btn.innerHTML = `<span class="material-symbols-outlined">check_circle</span> Éxito`;
+                        btn.classList.replace('bg-primary-container', 'bg-emerald-600');
+                        setTimeout(() => {
+                            window.location.href = 'athlete-dashboard.html';
+                        }, 800);
+                    }
                 }
             } catch (error) {
                 alert('Error: ' + error.message);

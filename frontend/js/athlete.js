@@ -460,8 +460,22 @@ document.addEventListener('DOMContentLoaded', async () => {
                 // Calcular fecha basada en lunes de inicio
                 const dateParts = planData.week_start_date.split('-');
                 const baseDate = new Date(parseInt(dateParts[0]), parseInt(dateParts[1]) - 1, parseInt(dateParts[2]));
-                // Espaciar cada día por 2 días de descanso (ej: Lunes, Miércoles, Viernes)
-                const offset = (d - 1) * 2;
+                
+                // Distribución inteligente de días dentro de la misma semana
+                let offset = 0;
+                if (numDays === 2) {
+                    offset = (d === 1) ? 0 : 3; // Lunes, Jueves
+                } else if (numDays === 3) {
+                    offset = (d - 1) * 2; // Lunes, Miércoles, Viernes
+                } else if (numDays === 4) {
+                    const offsets = [0, 1, 3, 4]; // Lunes, Martes, Jueves, Viernes
+                    offset = offsets[d - 1];
+                } else if (numDays === 5) {
+                    const offsets = [0, 1, 2, 4, 5]; // Lunes, Martes, Miércoles, Viernes, Sábado
+                    offset = offsets[d - 1];
+                } else {
+                    offset = d - 1; // Consecutivos para 1, 6 o 7 días
+                }
                 baseDate.setDate(baseDate.getDate() + offset);
                 
                 const yyyy = baseDate.getFullYear();

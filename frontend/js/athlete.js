@@ -374,6 +374,12 @@ document.addEventListener('DOMContentLoaded', async () => {
                 </div>
                 ${deleteBtnHtml}
             </div>
+            <div class="grid grid-cols-12 gap-3 text-[10px] font-bold text-secondary uppercase px-1">
+                <div class="col-span-2">Serie</div>
+                <div class="col-span-3">Peso (kg)</div>
+                <div class="col-span-3">Reps</div>
+                <div class="col-span-4">RPE Objetivo</div>
+            </div>
             <div class="space-y-3 sets-rows-container">
                 <!-- Set rows will be here -->
             </div>

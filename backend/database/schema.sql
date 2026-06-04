@@ -22,7 +22,8 @@ CREATE TABLE IF NOT EXISTS plans (
     week_start_date TEXT NOT NULL, -- Fecha del Lunes de esa semana (YYYY-MM-DD)
     frequency_days INTEGER NOT NULL, -- Cantidad de días de entrenamiento planificados
     status TEXT NOT NULL DEFAULT 'pendiente', -- 'pendiente' o 'completado'
-    FOREIGN KEY (athlete_id) REFERENCES athletes (id)
+    FOREIGN KEY (athlete_id) REFERENCES athletes (id),
+    UNIQUE(athlete_id, week_start_date)
 );
 
 -- Sesión de entrenamiento (Día dentro del plan semanal)

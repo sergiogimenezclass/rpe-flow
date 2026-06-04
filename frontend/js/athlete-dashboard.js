@@ -97,16 +97,26 @@ document.addEventListener('DOMContentLoaded', async () => {
             
             // Generar los 7 días de la semana
             const weekdays = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
+            const today = new Date();
+            today.setHours(0,0,0,0);
             
             for (let i = 0; i < 7; i++) {
                 const dayDate = new Date(currentMonday);
                 dayDate.setDate(dayDate.getDate() + i);
+                dayDate.setHours(0,0,0,0);
                 const dayDateStr = formatDateToYYYYMMDD(dayDate);
+                const isFuture = dayDate > today;
                 
                 // Buscar si hay sesión planificada para esta fecha
                 let session = null;
                 if (planResponse && planResponse.sessions) {
                     session = planResponse.sessions.find(s => s.date === dayDateStr);
+                }
+
+                let exerciseNames = '';
+                if (session && session.exercises) {
+                    const uniqueExercises = [...new Set(session.exercises.map(e => e.exercise))];
+                    exerciseNames = uniqueExercises.join(', ');
                 }
 
                 const dayRow = document.createElement('div');
@@ -117,9 +127,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 if (session) {
                     if (session.status === 'pendiente') {
-                        sessionBadge = '<span class="px-2.5 py-0.5 rounded-full text-[10px] bg-amber-100 text-amber-800 font-bold">Pendiente</span>';
-                        dayRow.classList.add('cursor-pointer');
-                        dayRow.addEventListener('click', () => selectSessionForCompletion(session));
+                        if (isFuture) {
+                            sessionBadge = '<span class="px-2.5 py-0.5 rounded-full text-[10px] bg-gray-100 text-gray-400 font-bold">Futura</span>';
+                        } else {
+                            sessionBadge = '<span class="px-2.5 py-0.5 rounded-full text-[10px] bg-amber-100 text-amber-800 font-bold">Pendiente</span>';
+                            dayRow.classList.add('cursor-pointer');
+                            dayRow.addEventListener('click', () => selectSessionForCompletion(session));
+                            actionBtnHtml = '<span class="material-symbols-outlined text-orange-600 text-lg">play_arrow</span>';
+                        }
                     } else {
                         sessionBadge = '<span class="px-2.5 py-0.5 rounded-full text-[10px] bg-emerald-100 text-emerald-800 font-bold">Completado</span>';
                     }
@@ -133,12 +148,12 @@ document.addEventListener('DOMContentLoaded', async () => {
                         </div>
                         <div>
                             <span class="text-sm font-semibold text-on-surface block">${session ? `Día ${session.day_number}: Rutina` : 'Descanso'}</span>
-                            <span class="text-xs text-secondary block">${dayDateStr}</span>
+                            <span class="text-xs text-secondary block">${session && exerciseNames ? `${dayDateStr} • ${exerciseNames}` : dayDateStr}</span>
                         </div>
                     </div>
                     <div class="flex items-center gap-2">
                         ${sessionBadge}
-                        ${session && session.status === 'pendiente' ? '<span class="material-symbols-outlined text-orange-600 text-lg">play_arrow</span>' : ''}
+                        ${actionBtnHtml}
                     </div>
                 `;
 
@@ -211,6 +226,17 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
+    function getRpeLegend(val) {
+        const v = parseFloat(val);
+        if (v <= 7) {
+            return "Esfuerzo moderado (puedo subir carga)";
+        } else if (v <= 9) {
+            return "Esfuerzo ideal (mantener carga)";
+        } else {
+            return "Esfuerzo máximo / fallo (bajar carga / descarga)";
+        }
+    }
+
     // 4. Seleccionar sesión del calendario para registrar
     function selectSessionForCompletion(session) {
         document.getElementById('completeSessionId').value = session.id;
@@ -250,6 +276,16 @@ document.addEventListener('DOMContentLoaded', async () => {
                 <div class="space-y-4 sets-container">
                     <!-- Dynamic sets rows will be here -->
                 </div>
+                <div class="border-t pt-3 mt-2 space-y-2 exercise-rpe-container" data-exercise-name="${exGroup.name}">
+                    <div class="flex justify-between items-center">
+                        <div class="flex flex-col">
+                            <span class="text-xs font-bold text-secondary">RPE del Ejercicio</span>
+                            <span class="text-[10px] text-gray-500 font-medium rpe-legend">Esfuerzo ideal (mantener carga)</span>
+                        </div>
+                        <span class="text-xs font-bold text-orange-600 bg-orange-100 px-2 py-0.5 rounded-full exercise-val-rpe">8</span>
+                    </div>
+                    <input type="range" min="1" max="10" step="0.5" value="8" class="w-full h-1.5 bg-gray-200 rounded-full appearance-none cursor-pointer accent-orange-600 exercise-slider-rpe" />
+                </div>
             `;
 
             const setsContainer = exDiv.querySelector('.sets-container');
@@ -273,24 +309,21 @@ document.addEventListener('DOMContentLoaded', async () => {
                             <input type="number" class="w-full bg-white border-none rounded-lg h-10 px-3 text-sm text-on-surface input-actual-reps" value="${set.planned_reps}" required />
                         </div>
                     </div>
-                    <div class="space-y-1 pt-1">
-                        <div class="flex justify-between items-end">
-                            <label class="text-[10px] font-bold text-secondary">RPE de la Serie</label>
-                            <span class="text-[11px] font-bold text-orange-600 bg-orange-100 px-2 py-0.5 rounded-full val-rpe" id="val-rpe-${set.id}">7</span>
-                        </div>
-                        <input type="range" min="1" max="10" step="0.5" value="7" class="w-full h-1.5 bg-gray-200 rounded-full appearance-none cursor-pointer accent-orange-600 slider-rpe" id="slider-rpe-${set.id}" />
-                    </div>
                 `;
-
-                // Listener del slider RPE por serie
-                const slider = setRow.querySelector('.slider-rpe');
-                const valLabel = setRow.querySelector('.val-rpe');
-                slider.addEventListener('input', (e) => {
-                    valLabel.textContent = e.target.value;
-                });
-
                 setsContainer.appendChild(setRow);
             });
+
+            // Configurar el slider RPE de este ejercicio
+            const rpeSlider = exDiv.querySelector('.exercise-slider-rpe');
+            const rpeValLabel = exDiv.querySelector('.exercise-val-rpe');
+            const rpeLegend = exDiv.querySelector('.rpe-legend');
+
+            rpeSlider.addEventListener('input', (e) => {
+                const val = e.target.value;
+                rpeValLabel.textContent = val;
+                rpeLegend.textContent = getRpeLegend(val);
+            });
+            rpeLegend.textContent = getRpeLegend(rpeSlider.value);
 
             formExercisesContainer.appendChild(exDiv);
         });
@@ -309,20 +342,25 @@ document.addEventListener('DOMContentLoaded', async () => {
             const sessionId = document.getElementById('completeSessionId').value;
             const exerciseContainers = formExercisesContainer.children;
             const completedExercises = [];
+            const rpe_por_ejercicio = {};
 
             for (let container of exerciseContainers) {
+                const rpeContainer = container.querySelector('.exercise-rpe-container');
+                const exerciseName = rpeContainer.dataset.exerciseName;
+                const actual_rpe = parseFloat(rpeContainer.querySelector('.exercise-slider-rpe').value);
+                
+                rpe_por_ejercicio[exerciseName] = actual_rpe;
+
                 const setRows = container.querySelector('.sets-container').children;
                 for (let row of setRows) {
                     const exId = parseInt(row.dataset.exerciseId);
                     const actual_weight = parseFloat(row.querySelector('.input-actual-weight').value);
                     const actual_reps = parseInt(row.querySelector('.input-actual-reps').value);
-                    const actual_rpe = parseFloat(row.querySelector('.slider-rpe').value);
 
                     completedExercises.push({
                         id: exId,
                         actual_weight,
-                        actual_reps,
-                        actual_rpe
+                        actual_reps
                     });
                 }
             }
@@ -331,7 +369,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const response = await apiFetch(`/sessions/${sessionId}/complete`, {
                     method: 'POST',
                     body: JSON.stringify({
-                        exercises: completedExercises
+                        exercises: completedExercises,
+                        rpe_por_ejercicio
                     })
                 });
 

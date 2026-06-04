@@ -281,6 +281,28 @@
 </div>
 </div>
 </div>
+<!-- Weekly Planning Section -->
+<section class="mb-stack-lg border-b pb-8">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-stack-md gap-4">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Planificación Semanal</h2>
+<p class="font-body-md text-body-md text-secondary">Consulta y gestiona las rutinas asignadas</p>
+</div>
+<div class="flex items-center gap-3 bg-white px-4 py-2 rounded-lg card-shadow border">
+<button type="button" id="prevWeekBtn" class="text-primary hover:underline flex items-center gap-0.5 text-xs font-bold">
+<span class="material-symbols-outlined text-sm">chevron_left</span> Anterior
+</button>
+<span id="currentWeekRange" class="font-bold text-on-surface text-xs min-w-[120px] text-center">Semana del -</span>
+<button type="button" id="nextWeekBtn" class="text-primary hover:underline flex items-center gap-0.5 text-xs font-bold">
+Siguiente <span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+<div id="weekly-plan-container" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <!-- Weekly sessions will be dynamically loaded here -->
+</div>
+</section>
+
 <!-- History Section -->
 <section>
 <div class="flex justify-between items-center mb-stack-md">
